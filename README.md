@@ -6,3 +6,5 @@
 - GrayScaleImage (`addGrayScale(String outputImagePath): void`)
 
 ### More coming soon...
+
+### [Ibne Nahian](https://www.facebook.com/evilprince2009)
