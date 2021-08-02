@@ -1,2 +1,7 @@
-# Java-Image-Manipulation
-Some simple image effects done in Java
+## Some simple image effects done in Java
+
+### Effects :
+
+- BlueImage (`addBlueEffect(): void`)
+
+### More coming soon...
