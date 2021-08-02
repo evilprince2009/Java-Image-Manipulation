@@ -1,7 +1,8 @@
 ## Some simple image effects done in Java
 
-### Effects :
+### Implemented effects are listed below :
 
-- BlueImage (`addBlueEffect(): void`)
+- BlueImage (`addBlueEffect(String outputImagePath): void`)
+- GrayScaleImage (`addGrayScale(String outputImagePath): void`)
 
 ### More coming soon...
