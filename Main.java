@@ -13,6 +13,8 @@ public class Main {
         String negativeImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-negative.jpg";
         String redImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-red.jpg";
 
+        String sepiaImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-sepia.jpg";
+
         ImageManipulator imageInstace = new ImageManipulator(inputImagePath, "jpg");
         
         imageInstace.addBlueEffect(blueImageOutPath);
@@ -20,5 +22,6 @@ public class Main {
         imageInstace.addGreenMatrix(greenImageOutPath);
         imageInstace.addNegativeEffect(negativeImageOutPath);
         imageInstace.addRedDevil(redImageOutPath);
+        imageInstace.addSepia(sepiaImageOutPath);
     }
 }
