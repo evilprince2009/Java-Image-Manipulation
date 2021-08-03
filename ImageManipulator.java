@@ -61,12 +61,7 @@ public class ImageManipulator {
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
-
-        try {
-            writeImage(outputImagePath, format);
-        } catch (IOException ex) {
-            System.out.println("We faced some problem during processing image.");
-        }
+        writeImage(outputImagePath, format);
     }
 
     public void addRedDevil(String outputImagePath) {
@@ -85,12 +80,7 @@ public class ImageManipulator {
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
-
-        try {
-            writeImage(outputImagePath, format);
-        } catch (IOException ex) {
-            System.out.println("We faced some problem during processing image.");
-        }
+        writeImage(outputImagePath, format);
     }
 
     public void addNegativeEffect(String outputImagePath) {
@@ -115,12 +105,7 @@ public class ImageManipulator {
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
-
-        try {
-            writeImage(outputImagePath, format);
-        } catch (IOException ex) {
-            System.out.println("We faced some problem during processing image.");
-        }
+        writeImage(outputImagePath, format);
     }
 
     public void addGreenMatrix(String outputImagePath) {
@@ -137,12 +122,7 @@ public class ImageManipulator {
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
-
-        try {
-            writeImage(outputImagePath, format);
-        } catch (IOException ex) {
-            System.out.println("We faced some problem during processing image.");
-        }
+        writeImage(outputImagePath, format);
     }
 
     public void addGrayScale(String outputImagePath) {
@@ -161,12 +141,7 @@ public class ImageManipulator {
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
-
-        try {
-            writeImage(outputImagePath, format);
-        } catch (IOException ex) {
-            System.out.println("We faced some problem during processing image.");
-        }
+        writeImage(outputImagePath, format);
     }
 
     public void addBlueEffect(String outputImagePath) {
@@ -183,12 +158,7 @@ public class ImageManipulator {
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
-
-        try {
-            writeImage(outputImagePath, format);
-        } catch (IOException ex) {
-            System.out.println("We faced some problem during processing image.");
-        }
+        writeImage(outputImagePath, format);
     }
 
     private void setBuffer() {
@@ -201,9 +171,13 @@ public class ImageManipulator {
         }
     }
 
-    private void writeImage(String filePath, String format) throws IOException {
-        fileBuffer = new File(filePath);
-        ImageIO.write(imageBuffer, format, fileBuffer);
-        System.out.println("Image successfully saved to " + filePath);
+    private void writeImage(String filePath, String format) {
+        try {
+            fileBuffer = new File(filePath);
+            ImageIO.write(imageBuffer, format, fileBuffer);
+            System.out.println("Image successfully saved to " + filePath);
+        } catch (IOException ex) {
+            System.out.println("We faced some problem during processing image.");
+        }
     }
 }
