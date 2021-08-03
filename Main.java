@@ -7,12 +7,13 @@ public class Main {
         String blueImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-blue.jpg";
 
         String grayscaleImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-grayscale.jpg";
-        
+
         String greenImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-green.jpg";
 
-        ImageManipulator image = new ImageManipulator(inputImagePath);
-        image.addBlueEffect(blueImageOutPath);
-        image.addGrayScale(grayscaleImageOutPath);
-        image.addGreenMatrix(greenImageOutPath);
+        ImageManipulator firstImgInstace = new ImageManipulator(inputImagePath, "jpg");
+        
+        firstImgInstace.addBlueEffect(blueImageOutPath);
+        firstImgInstace.addGrayScale(grayscaleImageOutPath);
+        firstImgInstace.addGreenMatrix(greenImageOutPath);
     }
 }

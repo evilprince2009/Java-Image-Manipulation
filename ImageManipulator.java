@@ -12,11 +12,13 @@ public class ImageManipulator {
     private final String rawImagePath;
     private BufferedImage imageBuffer;
     private File fileBuffer;
+    private String format;
 
-    public ImageManipulator(String rawImagePath) {
+    public ImageManipulator(String rawImagePath, String format) {
         this.rawImagePath = rawImagePath;
         this.imageBuffer = null;
         this.fileBuffer = null;
+        this.format = format;
     }
 
     public void addGreenMatrix(String outputImagePath) {
@@ -41,7 +43,7 @@ public class ImageManipulator {
         }
 
         try {
-            writeImage(outputImagePath);
+            writeImage(outputImagePath, format);
         } catch (IOException ex) {
             System.out.println("We faced some problem during processing image.");
         }
@@ -70,7 +72,7 @@ public class ImageManipulator {
         }
 
         try {
-            writeImage(outputImagePath);
+            writeImage(outputImagePath, format);
         } catch (IOException ex) {
             System.out.println("We faced some problem during processing image.");
         }
@@ -97,15 +99,15 @@ public class ImageManipulator {
         }
 
         try {
-            writeImage(outputImagePath);
+            writeImage(outputImagePath, format);
         } catch (IOException ex) {
             System.out.println("We faced some problem during processing image.");
         }
     }
 
-    private void writeImage(String filePath) throws IOException {
+    private void writeImage(String filePath, String format) throws IOException {
         fileBuffer = new File(filePath);
-        ImageIO.write(imageBuffer, "jpg", fileBuffer);
+        ImageIO.write(imageBuffer, format, fileBuffer);
         System.out.println("Image successfully saved to " + filePath);
     }
 }
