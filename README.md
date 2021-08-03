@@ -6,6 +6,7 @@
 - GrayScaleImage (`addGrayScale(String outputImagePath): void`)
 - GreenMatrix (`addGreenMatrix(String outputImagePath): void`)
 - NegativeEffect (`addNegativeEffect(String outputImagePath): void`)
+- RedDevil (`addRedDevil(String outputImagePath): void`)
 
 ### More coming soon . . .
 
