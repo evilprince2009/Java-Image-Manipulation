@@ -21,6 +21,37 @@ public class ImageManipulator {
         this.format = format;
     }
 
+    public void addRedDevil(String outputImagePath) {
+        try {
+            fileBuffer = new File(rawImagePath);
+            imageBuffer = ImageIO.read(fileBuffer);
+        } catch (IOException ex) {
+            System.out.println("Problem with reading image.");
+            return;
+        }
+
+        int width = imageBuffer.getWidth();
+        int height = imageBuffer.getHeight();
+
+        for (int vertical = 0; vertical < height; vertical++) {
+            for (int horizontal = 0; horizontal < width; horizontal++) {
+                int pixels = imageBuffer.getRGB(horizontal, vertical);
+
+                int autos = (pixels >> 24) & 0xff;
+                int red = (pixels >> 16) & 0xff;
+
+                pixels = (autos << 24) | (red << 16) | (0 << 8) | 0;
+                imageBuffer.setRGB(horizontal, vertical, pixels);
+            }
+        }
+
+        try {
+            writeImage(outputImagePath, format);
+        } catch (IOException ex) {
+            System.out.println("We faced some problem during processing image.");
+        }
+    }
+
     public void addNegativeEffect(String outputImagePath) {
         try {
             fileBuffer = new File(rawImagePath);
