@@ -64,7 +64,6 @@ public class ImageManipulator {
                     blue = avgBlue;
                 }
 
-                //set new RGB value
                 pixels = (autos << 24) | (red << 16) | (green << 8) | blue;
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
