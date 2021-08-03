@@ -13,7 +13,7 @@ Let's add some effects to your favourite image without using Photoshop or any ot
 - RedDevil (`addRedDevil(String outputImagePath): void`)
 - Sepia (`addSepia(String outputImagePath): void`)
 
-## Here is how an image lloks like before and after applying the effect
+## Here is how an image lloks like before and after applying the GreenMatrix effect
 
 ### Before
 
