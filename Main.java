@@ -2,6 +2,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String args[]) throws IOException {
+        
+        final String format = "jpg";
+
         String inputImagePath = "D:\\GitHub Repos\\Java-Image-Manipulation\\raw images\\imran-original.jpg";
 
         String blueImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-blue.jpg";
@@ -11,12 +14,13 @@ public class Main {
         String greenImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-green.jpg";
 
         String negativeImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-negative.jpg";
+
         String redImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-red.jpg";
 
         String sepiaImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-sepia.jpg";
 
-        ImageManipulator imageInstace = new ImageManipulator(inputImagePath, "jpg");
-        
+        ImageManipulator imageInstace = new ImageManipulator(inputImagePath, format);
+
         imageInstace.addBlueEffect(blueImageOutPath);
         imageInstace.addGrayScale(grayscaleImageOutPath);
         imageInstace.addGreenMatrix(greenImageOutPath);
