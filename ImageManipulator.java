@@ -22,14 +22,7 @@ public class ImageManipulator {
     }
 
     public void addSepia(String outputImagePath) {
-        try {
-            fileBuffer = new File(rawImagePath);
-            imageBuffer = ImageIO.read(fileBuffer);
-        } catch (IOException ex) {
-            System.out.println("Problem with reading image.");
-            return;
-        }
-
+        setBuffer();
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
 
@@ -77,14 +70,7 @@ public class ImageManipulator {
     }
 
     public void addRedDevil(String outputImagePath) {
-        try {
-            fileBuffer = new File(rawImagePath);
-            imageBuffer = ImageIO.read(fileBuffer);
-        } catch (IOException ex) {
-            System.out.println("Problem with reading image.");
-            return;
-        }
-
+        setBuffer();
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
 
@@ -108,14 +94,7 @@ public class ImageManipulator {
     }
 
     public void addNegativeEffect(String outputImagePath) {
-        try {
-            fileBuffer = new File(rawImagePath);
-            imageBuffer = ImageIO.read(fileBuffer);
-        } catch (IOException ex) {
-            System.out.println("Problem with reading image.");
-            return;
-        }
-
+        setBuffer();
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
 
@@ -145,14 +124,7 @@ public class ImageManipulator {
     }
 
     public void addGreenMatrix(String outputImagePath) {
-        try {
-            fileBuffer = new File(rawImagePath);
-            imageBuffer = ImageIO.read(fileBuffer);
-        } catch (IOException ex) {
-            System.out.println("Problem with reading image.");
-            return;
-        }
-
+        setBuffer();
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
 
@@ -174,13 +146,7 @@ public class ImageManipulator {
     }
 
     public void addGrayScale(String outputImagePath) {
-        try {
-            fileBuffer = new File(rawImagePath);
-            imageBuffer = ImageIO.read(fileBuffer);
-        } catch (IOException ex) {
-            System.out.println("Problem with reading image.");
-            return;
-        }
+        setBuffer();
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
         for (int vertical = 0; vertical < height; vertical++) {
@@ -204,13 +170,7 @@ public class ImageManipulator {
     }
 
     public void addBlueEffect(String outputImagePath) {
-        try {
-            fileBuffer = new File(rawImagePath);
-            imageBuffer = ImageIO.read(fileBuffer);
-        } catch (IOException ex) {
-            System.out.println("Problem with reading image.");
-            return;
-        }
+        setBuffer();
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
 
@@ -228,6 +188,16 @@ public class ImageManipulator {
             writeImage(outputImagePath, format);
         } catch (IOException ex) {
             System.out.println("We faced some problem during processing image.");
+        }
+    }
+
+    private void setBuffer() {
+        try {
+            fileBuffer = new File(rawImagePath);
+            imageBuffer = ImageIO.read(fileBuffer);
+        } catch (IOException ex) {
+            System.out.println("Problem with reading image.");
+            return;
         }
     }
 
