@@ -5,6 +5,7 @@
 - BlueImage (`addBlueEffect(String outputImagePath): void`)
 - GrayScaleImage (`addGrayScale(String outputImagePath): void`)
 - GreenMatrix (`addGreenMatrix(String outputImagePath): void`)
+- NegativeEffect (`addNegativeEffect(String outputImagePath): void`)
 
 ### More coming soon . . .
 

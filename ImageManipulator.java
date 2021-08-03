@@ -21,12 +21,50 @@ public class ImageManipulator {
         this.format = format;
     }
 
+    public void addNegativeEffect(String outputImagePath) {
+        try {
+            fileBuffer = new File(rawImagePath);
+            imageBuffer = ImageIO.read(fileBuffer);
+        } catch (IOException ex) {
+            System.out.println("Problem with reading image.");
+            return;
+        }
+
+        int width = imageBuffer.getWidth();
+        int height = imageBuffer.getHeight();
+
+        for (int vertical = 0; vertical < height; vertical++) {
+            for (int horizontal = 0; horizontal < width; horizontal++) {
+                int pixels = imageBuffer.getRGB(horizontal, vertical);
+
+                int autos = (pixels >> 24) & 0xff;
+                int red = (pixels >> 16) & 0xff;
+                int green = (pixels >> 8) & 0xff;
+                int blue = pixels & 0xff;
+
+                red = 255 - red;
+                green = 255 - green;
+                blue = 255 - blue;
+
+                pixels = (autos << 24) | (red << 16) | (green << 8) | blue;
+                imageBuffer.setRGB(horizontal, vertical, pixels);
+            }
+        }
+
+        try {
+            writeImage(outputImagePath, format);
+        } catch (IOException ex) {
+            System.out.println("We faced some problem during processing image.");
+        }
+    }
+
     public void addGreenMatrix(String outputImagePath) {
         try {
             fileBuffer = new File(rawImagePath);
             imageBuffer = ImageIO.read(fileBuffer);
-        } catch (IOException e) {
+        } catch (IOException ex) {
             System.out.println("Problem with reading image.");
+            return;
         }
 
         int width = imageBuffer.getWidth();
@@ -55,6 +93,7 @@ public class ImageManipulator {
             imageBuffer = ImageIO.read(fileBuffer);
         } catch (IOException ex) {
             System.out.println("Problem with reading image.");
+            return;
         }
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
@@ -84,6 +123,7 @@ public class ImageManipulator {
             imageBuffer = ImageIO.read(fileBuffer);
         } catch (IOException ex) {
             System.out.println("Problem with reading image.");
+            return;
         }
         int width = imageBuffer.getWidth();
         int height = imageBuffer.getHeight();
