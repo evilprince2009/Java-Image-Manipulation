@@ -37,8 +37,8 @@ public class ImageManipulator {
 
                 int avgRed = (int)(0.393 * red + 0.769 * green + 0.189 * blue);
                 int avgGreen = (int)(0.349 * red + 0.686 * green + 0.168 * blue);
-                
                 int avgBlue = (int)(0.272 * red + 0.534 * green + 0.131 * blue);
+
                 red = (avgRed > 255) ? 255 : avgRed;
                 green = (avgGreen > 255) ? 255 : avgGreen;
                 blue = (avgBlue > 255) ? 255 : avgBlue;
