@@ -37,25 +37,11 @@ public class ImageManipulator {
 
                 int avgRed = (int)(0.393 * red + 0.769 * green + 0.189 * blue);
                 int avgGreen = (int)(0.349 * red + 0.686 * green + 0.168 * blue);
+                
                 int avgBlue = (int)(0.272 * red + 0.534 * green + 0.131 * blue);
-
-                if (avgRed > 255) {
-                    red = 255;
-                } else {
-                    red = avgRed;
-                }
-
-                if (avgGreen > 255) {
-                    green = 255;
-                } else {
-                    green = avgGreen;
-                }
-
-                if (avgBlue > 255) {
-                    blue = 255;
-                } else {
-                    blue = avgBlue;
-                }
+                red = (avgRed > 255) ? 255 : avgRed;
+                green = (avgGreen > 255) ? 255 : avgGreen;
+                blue = (avgBlue > 255) ? 255 : avgBlue;
 
                 pixels = (autos << 24) | (red << 16) | (green << 8) | blue;
                 imageBuffer.setRGB(horizontal, vertical, pixels);
