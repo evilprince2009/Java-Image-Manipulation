@@ -5,14 +5,14 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 public class ImageManipulator {
     private final String rawImagePath;
     private BufferedImage imageBuffer;
     private File fileBuffer;
-    private String format;
+    private final String format;
 
     public ImageManipulator(String rawImagePath, String format) {
         this.rawImagePath = rawImagePath;
@@ -39,9 +39,9 @@ public class ImageManipulator {
                 int avgGreen = (int)(0.349 * red + 0.686 * green + 0.168 * blue);
                 int avgBlue = (int)(0.272 * red + 0.534 * green + 0.131 * blue);
 
-                red = (avgRed > 255) ? 255 : avgRed;
-                green = (avgGreen > 255) ? 255 : avgGreen;
-                blue = (avgBlue > 255) ? 255 : avgBlue;
+                red = Math.min(avgRed, 255);
+                green = Math.min(avgGreen, 255);
+                blue = Math.min(avgBlue, 255);
 
                 pixels = (autos << 24) | (red << 16) | (green << 8) | blue;
                 imageBuffer.setRGB(horizontal, vertical, pixels);
@@ -62,7 +62,7 @@ public class ImageManipulator {
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
 
-                pixels = (autos << 24) | (red << 16) | (0 << 8) | 0;
+                pixels = (autos << 24) | (red << 16) | (0);
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
@@ -140,7 +140,7 @@ public class ImageManipulator {
                 int pixels = imageBuffer.getRGB(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int blue = pixels & 0xff;
-                pixels = (autos << 24) | (0 << 16) | (0 << 8) | blue;
+                pixels = (autos << 24) | (0) | blue;
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
@@ -153,7 +153,6 @@ public class ImageManipulator {
             imageBuffer = ImageIO.read(fileBuffer);
         } catch (IOException ex) {
             System.out.println("Problem with reading image.");
-            return;
         }
     }
 

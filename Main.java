@@ -19,13 +19,13 @@ public class Main {
 
         String sepiaImageOutPath = "D:\\GitHub Repos\\Java-Image-Manipulation\\manipulated images\\imran-sepia.jpg";
 
-        ImageManipulator imageInstace = new ImageManipulator(inputImagePath, format);
+        ImageManipulator imageInstance = new ImageManipulator(inputImagePath, format);
 
-        imageInstace.addBlueEffect(blueImageOutPath);
-        imageInstace.addGrayScale(grayscaleImageOutPath);
-        imageInstace.addGreenMatrix(greenImageOutPath);
-        imageInstace.addNegativeEffect(negativeImageOutPath);
-        imageInstace.addRedDevil(redImageOutPath);
-        imageInstace.addSepia(sepiaImageOutPath);
+        imageInstance.addBlueEffect(blueImageOutPath);
+        imageInstance.addGrayScale(grayscaleImageOutPath);
+        imageInstance.addGreenMatrix(greenImageOutPath);
+        imageInstance.addNegativeEffect(negativeImageOutPath);
+        imageInstance.addRedDevil(redImageOutPath);
+        imageInstance.addSepia(sepiaImageOutPath);
     }
 }
