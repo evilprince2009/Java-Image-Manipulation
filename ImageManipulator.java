@@ -5,7 +5,7 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.util.stream.IntStream;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
@@ -123,7 +123,10 @@ public class ImageManipulator {
                 int red = (pixels >> 16) & 0xff;
                 int green = (pixels >> 8) & 0xff;
                 int blue = pixels & 0xff;
-                var avarage = (int) IntStream.of(red, green, blue).average().getAsDouble();
+                int avarage = (int) Arrays.asList(red, blue, green)
+                        .stream().mapToInt(Integer::intValue)
+                        .summaryStatistics()
+                        .getAverage();
                 pixels = (autos << 24) | (avarage << 16)
                         | (avarage << 8) | avarage;
                 imageBuffer.setRGB(horizontal, vertical, pixels);
