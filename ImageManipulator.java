@@ -5,6 +5,7 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.IntStream;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
@@ -35,9 +36,9 @@ public class ImageManipulator {
                 int green = (pixels >> 8) & 0xff;
                 int blue = pixels & 0xff;
 
-                int avgRed = (int)(0.393 * red + 0.769 * green + 0.189 * blue);
-                int avgGreen = (int)(0.349 * red + 0.686 * green + 0.168 * blue);
-                int avgBlue = (int)(0.272 * red + 0.534 * green + 0.131 * blue);
+                int avgRed = (int) (0.393 * red + 0.769 * green + 0.189 * blue);
+                int avgGreen = (int) (0.349 * red + 0.686 * green + 0.168 * blue);
+                int avgBlue = (int) (0.272 * red + 0.534 * green + 0.131 * blue);
 
                 red = Math.min(avgRed, 255);
                 green = Math.min(avgGreen, 255);
@@ -122,8 +123,9 @@ public class ImageManipulator {
                 int red = (pixels >> 16) & 0xff;
                 int green = (pixels >> 8) & 0xff;
                 int blue = pixels & 0xff;
-                int avarage = (red + green + blue) / 3;
-                pixels = (autos << 24) | (avarage << 16) | (avarage << 8) | avarage;
+                var avarage = (int) IntStream.of(red, green, blue).average().getAsDouble();
+                pixels = (autos << 24) | (avarage << 16)
+                        | (avarage << 8) | avarage;
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
@@ -152,7 +154,7 @@ public class ImageManipulator {
             fileBuffer = new File(rawImagePath);
             imageBuffer = ImageIO.read(fileBuffer);
         } catch (IOException ex) {
-            System.out.println("Problem with reading image.");
+            logger("Problem with reading image.");
         }
     }
 
@@ -160,9 +162,13 @@ public class ImageManipulator {
         try {
             fileBuffer = new File(filePath);
             ImageIO.write(imageBuffer, format, fileBuffer);
-            System.out.println("Image successfully saved to " + filePath);
+            logger("Image successfully saved to " + filePath);
         } catch (IOException ex) {
-            System.out.println("We faced some problem during processing image.");
+            logger("We faced some problem during processing image.");
         }
+    }
+
+    private void logger(String message) {
+        System.out.println(message);
     }
 }
