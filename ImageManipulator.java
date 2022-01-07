@@ -4,6 +4,7 @@
 */
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
@@ -157,7 +158,7 @@ public class ImageManipulator {
             fileBuffer = new File(rawImagePath);
             imageBuffer = ImageIO.read(fileBuffer);
         } catch (IOException ex) {
-            logger("Problem with reading image.");
+            logger(ex.getMessage());
         }
     }
 
@@ -167,11 +168,23 @@ public class ImageManipulator {
             ImageIO.write(imageBuffer, format, fileBuffer);
             logger("Image successfully saved to " + filePath);
         } catch (IOException ex) {
-            logger("We faced some problem during processing image.");
+            logger(ex.getMessage());
         }
     }
 
     private void logger(String message) {
-        System.out.println(message);
+        String filePath = "details.log";
+        try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            try (FileWriter writer = new FileWriter(filePath, true)) {
+                writer.append("\n" + message);
+            }
+        } catch (Exception e) {
+            System.err.println("A full log can be found at " + filePath);
+        }
     }
 }

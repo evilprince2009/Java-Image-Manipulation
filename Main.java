@@ -1,8 +1,7 @@
-import java.io.IOException;
 
 public class Main {
-    public static void main(String args[]) throws IOException {
-        
+    public static void main(String[] args) {
+
         final String format = "jpg";
 
         String inputImagePath = "D:\\GitHub Repos\\Java-Image-Manipulation\\raw images\\imran-original.jpg";
