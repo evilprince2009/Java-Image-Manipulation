@@ -6,9 +6,9 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.util.stream.Stream;
 
 public class ImageManipulator {
     private final String rawImagePath;
@@ -106,7 +106,7 @@ public class ImageManipulator {
                 int pixels = imageBuffer.getRGB(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int green = (pixels >> 8) & 0xff;
-                pixels = (autos << 24) | (0 << 16) | (green << 8) | 0;
+                pixels = (autos << 24) | (0) | (green << 8);
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
@@ -124,12 +124,11 @@ public class ImageManipulator {
                 int red = (pixels >> 16) & 0xff;
                 int green = (pixels >> 8) & 0xff;
                 int blue = pixels & 0xff;
-                int avarage = (int) Arrays.asList(red, blue, green)
-                        .stream().mapToInt(Integer::intValue)
+                int average = (int) Stream.of(red, blue, green).mapToInt(Integer::intValue)
                         .summaryStatistics()
                         .getAverage();
-                pixels = (autos << 24) | (avarage << 16)
-                        | (avarage << 8) | avarage;
+                pixels = (autos << 24) | (average << 16)
+                        | (average << 8) | average;
                 imageBuffer.setRGB(horizontal, vertical, pixels);
             }
         }
@@ -181,7 +180,7 @@ public class ImageManipulator {
             }
 
             try (FileWriter writer = new FileWriter(filePath, true)) {
-                writer.append("\n" + message);
+                writer.append("\n").append(message);
             }
         } catch (Exception e) {
             System.err.println("A full log can be found at " + filePath);
