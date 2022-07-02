@@ -172,12 +172,11 @@ public class ImageManipulator {
     }
 
     private void logger(String message) {
-        String filePath = "details.log";
+        final String filePath = "details.log";
         try {
             File file = new File(filePath);
-            if (!file.exists()) {
+            if (!file.exists())
                 file.createNewFile();
-            }
 
             try (FileWriter writer = new FileWriter(filePath, true)) {
                 writer.append("\n").append(message);
