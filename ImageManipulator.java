@@ -30,7 +30,7 @@ public class ImageManipulator {
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = getImagePixels(horizontal, vertical);
 
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
@@ -59,7 +59,7 @@ public class ImageManipulator {
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = getImagePixels(horizontal, vertical);
 
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
@@ -78,7 +78,7 @@ public class ImageManipulator {
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = getImagePixels(horizontal, vertical);
 
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
@@ -103,7 +103,7 @@ public class ImageManipulator {
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = getImagePixels(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int green = (pixels >> 8) & 0xff;
                 pixels = (autos << 24) | (0) | (green << 8);
@@ -119,7 +119,7 @@ public class ImageManipulator {
         int height = imageBuffer.getHeight();
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = getImagePixels(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
                 int green = (pixels >> 8) & 0xff;
@@ -142,7 +142,7 @@ public class ImageManipulator {
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = getImagePixels(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int blue = pixels & 0xff;
                 pixels = (autos << 24) | (0) | blue;
@@ -184,5 +184,9 @@ public class ImageManipulator {
         } catch (Exception e) {
             System.err.println("A full log can be found at " + filePath);
         }
+    }
+
+    private int getImagePixels(int horizontal, int vertical) {
+        return imageBuffer.getRGB(horizontal, vertical);
     }
 }
