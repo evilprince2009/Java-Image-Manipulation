@@ -11,26 +11,26 @@ import java.awt.image.BufferedImage;
 import java.util.stream.Stream;
 
 public class ImageManipulator {
-    private final String rawImagePath;
-    private BufferedImage imageBuffer;
-    private File fileBuffer;
+    private final String raw_image_path;
+    private BufferedImage image_buffer;
+    private File file_buffer;
     private final String format;
 
-    public ImageManipulator(String rawImagePath, String format) {
-        this.rawImagePath = rawImagePath;
-        this.imageBuffer = null;
-        this.fileBuffer = null;
+    public ImageManipulator(String raw_image_path, String format) {
+        this.raw_image_path = raw_image_path;
+        this.image_buffer = null;
+        this.file_buffer = null;
         this.format = format;
     }
 
-    public void addSepia(String outputImagePath) {
+    public void addSepia(String out_image_path) {
         setBuffer();
-        int width = imageBuffer.getWidth();
-        int height = imageBuffer.getHeight();
+        int width = image_buffer.getWidth();
+        int height = image_buffer.getHeight();
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = image_buffer.getRGB(horizontal, vertical);
 
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
@@ -46,39 +46,39 @@ public class ImageManipulator {
                 blue = Math.min(avgBlue, 255);
 
                 pixels = (autos << 24) | (red << 16) | (green << 8) | blue;
-                imageBuffer.setRGB(horizontal, vertical, pixels);
+                image_buffer.setRGB(horizontal, vertical, pixels);
             }
         }
-        writeImage(outputImagePath, format);
+        writeImage(out_image_path, format);
     }
 
-    public void addRedDevil(String outputImagePath) {
+    public void addRedDevil(String out_image_path) {
         setBuffer();
-        int width = imageBuffer.getWidth();
-        int height = imageBuffer.getHeight();
+        int width = image_buffer.getWidth();
+        int height = image_buffer.getHeight();
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = image_buffer.getRGB(horizontal, vertical);
 
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
 
                 pixels = (autos << 24) | (red << 16) | (0);
-                imageBuffer.setRGB(horizontal, vertical, pixels);
+                image_buffer.setRGB(horizontal, vertical, pixels);
             }
         }
-        writeImage(outputImagePath, format);
+        writeImage(out_image_path, format);
     }
 
-    public void addNegativeEffect(String outputImagePath) {
+    public void addNegativeEffect(String out_image_path) {
         setBuffer();
-        int width = imageBuffer.getWidth();
-        int height = imageBuffer.getHeight();
+        int width = image_buffer.getWidth();
+        int height = image_buffer.getHeight();
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = image_buffer.getRGB(horizontal, vertical);
 
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
@@ -90,36 +90,36 @@ public class ImageManipulator {
                 blue = 255 - blue;
 
                 pixels = (autos << 24) | (red << 16) | (green << 8) | blue;
-                imageBuffer.setRGB(horizontal, vertical, pixels);
+                image_buffer.setRGB(horizontal, vertical, pixels);
             }
         }
-        writeImage(outputImagePath, format);
+        writeImage(out_image_path, format);
     }
 
-    public void addGreenMatrix(String outputImagePath) {
+    public void addGreenMatrix(String out_image_path) {
         setBuffer();
-        int width = imageBuffer.getWidth();
-        int height = imageBuffer.getHeight();
+        int width = image_buffer.getWidth();
+        int height = image_buffer.getHeight();
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = image_buffer.getRGB(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int green = (pixels >> 8) & 0xff;
                 pixels = (autos << 24) | (0) | (green << 8);
-                imageBuffer.setRGB(horizontal, vertical, pixels);
+                image_buffer.setRGB(horizontal, vertical, pixels);
             }
         }
-        writeImage(outputImagePath, format);
+        writeImage(out_image_path, format);
     }
 
-    public void addGrayScale(String outputImagePath) {
+    public void addGrayScale(String out_image_path) {
         setBuffer();
-        int width = imageBuffer.getWidth();
-        int height = imageBuffer.getHeight();
+        int width = image_buffer.getWidth();
+        int height = image_buffer.getHeight();
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = image_buffer.getRGB(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int red = (pixels >> 16) & 0xff;
                 int green = (pixels >> 8) & 0xff;
@@ -129,24 +129,24 @@ public class ImageManipulator {
                         .getAverage();
                 pixels = (autos << 24) | (average << 16)
                         | (average << 8) | average;
-                imageBuffer.setRGB(horizontal, vertical, pixels);
+                image_buffer.setRGB(horizontal, vertical, pixels);
             }
         }
-        writeImage(outputImagePath, format);
+        writeImage(out_image_path, format);
     }
 
     public void addBlueEffect(String outputImagePath) {
         setBuffer();
-        int width = imageBuffer.getWidth();
-        int height = imageBuffer.getHeight();
+        int width = image_buffer.getWidth();
+        int height = image_buffer.getHeight();
 
         for (int vertical = 0; vertical < height; vertical++) {
             for (int horizontal = 0; horizontal < width; horizontal++) {
-                int pixels = imageBuffer.getRGB(horizontal, vertical);
+                int pixels = image_buffer.getRGB(horizontal, vertical);
                 int autos = (pixels >> 24) & 0xff;
                 int blue = pixels & 0xff;
                 pixels = (autos << 24) | (0) | blue;
-                imageBuffer.setRGB(horizontal, vertical, pixels);
+                image_buffer.setRGB(horizontal, vertical, pixels);
             }
         }
         writeImage(outputImagePath, format);
@@ -154,35 +154,35 @@ public class ImageManipulator {
 
     private void setBuffer() {
         try {
-            fileBuffer = new File(rawImagePath);
-            imageBuffer = ImageIO.read(fileBuffer);
+            file_buffer = new File(raw_image_path);
+            image_buffer = ImageIO.read(file_buffer);
         } catch (IOException ex) {
             logger(ex.getMessage());
         }
     }
 
-    private void writeImage(String filePath, String format) {
+    private void writeImage(String file_path, String format) {
         try {
-            fileBuffer = new File(filePath);
-            ImageIO.write(imageBuffer, format, fileBuffer);
-            logger("Image successfully saved to " + filePath);
+            file_buffer = new File(file_path);
+            ImageIO.write(image_buffer, format, file_buffer);
+            logger("Image successfully saved to " + file_path);
         } catch (IOException ex) {
             logger(ex.getMessage());
         }
     }
 
     private void logger(String message) {
-        final String filePath = "details.log";
+        final String file_path = "details.log";
         try {
-            File file = new File(filePath);
+            File file = new File(file_path);
             if (!file.exists())
                 file.createNewFile();
 
-            try (FileWriter writer = new FileWriter(filePath, true)) {
+            try (FileWriter writer = new FileWriter(file_path, true)) {
                 writer.append("\n").append(message);
             }
         } catch (Exception e) {
-            System.err.println("A full log can be found at " + filePath);
+            System.err.println("A full log can be found at " + file_path);
         }
     }
 }
