@@ -25,4 +25,4 @@ Let's add some effects to your favourite image without using Photoshop or any ot
 
 Feel free to use this code in your own projects.
 
-### 🔭 [Ibne Nahian](https://www.facebook.com/evilprince2009) 🔭
+### [Ibne Nahian](https://www.facebook.com/evilprince2009)
